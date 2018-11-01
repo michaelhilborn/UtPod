@@ -1,12 +1,10 @@
-/* utPod_driver.cpp
- Demo Driver for the UtPod.
+/* UtPod_driver.cpp
+ Driver for the UtPod.
 
- Roger Priebe
- EE 312 10/16/18
+ Michael Hilborn
+ EE 312 10/30/18
 
- This is a basic driver for the UtPod.
-
- You will want to do more complete testing.
+ This is a tester for the UtPod Project
 
  */
 #include <cstdlib>
@@ -30,7 +28,7 @@ int main(int argc, char *argv[])
     int totmemory = 0;
     int remainingmemory = 0;
     int correct = 0;
-    int total = 50;
+    int total = 20;
 
     Song redbone("Childish Gambino", "Redbone", 15);
     Song bonfire("Childish Gambino", "Bonfire", 10);
@@ -158,7 +156,7 @@ int main(int argc, char *argv[])
     errorcode = t.removeSong(betternow);
     if(errorcode == t.SUCCESS){
         correct ++;
-        cout<<"Test6: Remove Song Test 2 passed"<<endl;
+        cout<<"Test 6: Remove Song Test 2 passed"<<endl;
         cout<< "Score:"<<correct<<"/"<<total<<endl<<endl;
     }
 
@@ -176,4 +174,146 @@ int main(int argc, char *argv[])
         cout<<"Test 7 Add Song Test No Memory Passed"<<endl;
         cout<< "Score:"<<correct<<"/"<<total<<endl<<endl;
     }
+
+    t.showSongList();
+    cout<<endl<<endl;
+
+    //Sort Test
+    t.sortSongList();
+    t.showSongList();
+    cout<<endl<<endl;
+
+    //shuffle test
+    t.shuffle();
+    t.showSongList();
+    cout<<endl<<endl;
+
+    //Sort Test
+    t.sortSongList();
+    t.showSongList();
+    cout<<endl<<endl;
+
+    //shuffle test
+    t.shuffle();
+    t.showSongList();
+    cout<<endl<<endl;
+
+
+    //Test 8: Test if you successfully add a song
+    errorcode = t.addSong(sober);
+    if(errorcode == t.SUCCESS){
+        correct ++;
+        cout << "Test 8 Successfully add a song Test Passed"<<endl;
+        cout << "Score: "<<correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 9: Test minimum Size for UtPod
+    UtPod test(0);
+
+    totmemory = test.getTotalMemory();
+
+    if(totmemory == 512){
+        correct ++;
+        cout << "Test 9 Minimum Size Constructor Test Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 10: Test Maximum Size for UtPod
+    UtPod test2(700);
+
+    totmemory = test2.getTotalMemory();
+
+    if(totmemory == 512){
+        correct ++;
+        cout << "Test 10 Maximum Size Constructor Test Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 11: Test Negative Size for UtPod
+    UtPod test3(-12);
+
+    totmemory = test2.getTotalMemory();
+
+    if(totmemory == 512){
+        correct ++;
+        cout << "Test 11 Negative Size Constructor Test Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+
+    //Test 12: Test > Song comparision #1
+    if(devastated > sober){
+        correct ++;
+        cout << "Test 12 Song > Overide Test 1 Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 13: Test > Song comparision #2
+    if(sober > bonfire){
+        correct ++;
+        cout << "Test 13 Song > Overide Test 2 Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 14: Test > Song comparision #3
+    Song sober1("Childish Gambino", "Sober", 14);
+    if(sober1 > sober){
+        correct ++;
+        cout << "Test 14 Song > Overide Test 3 Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 15: Test < Song comparision #1
+    if(sober < devastated){
+        correct ++;
+        cout << "Test 15 Song < Overide Test 1 Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 16: Test < Song comparision #2
+    if(bonfire < sober){
+        correct ++;
+        cout << "Test 16 Song < Overide Test 2 Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 17: Test < Song comparision #3
+    if(sober < sober1){
+        correct ++;
+        cout << "Test 17 Song < Overide Test 3 Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 18: Test == Song comparision #1
+    if(sober == sober){
+        correct ++;
+        cout << "Test 18 Song == Overide Test 1 Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 19: Test == Song comparision #2
+    if(!(sober == sober1)){
+        correct ++;
+        cout << "Test 19 Song == Overide Test 2 Passed" << endl;
+        cout << "Score: " << correct<<"/"<<total<<endl<<endl;
+    }
+
+    //Test 20 removing a song from an empty list
+    //Test 5: Remove Song Test 1:
+    errorcode = test.removeSong(stay);
+    if(errorcode == t.NOT_FOUND){
+        correct ++;
+        cout<<"Test 20: Remove Song from empty list test passed"<<endl;
+        cout<< "Score:"<<correct<<"/"<<total<<endl<<endl;
+    }
+    //empty shuffle test
+    test.shuffle();
+
+    //empty list show test
+    test.showSongList();
+    cout<<endl;
+
+    double finalscore = (correct/total) * 100;
+
+    cout<<"Final Score: " << finalscore<< endl<< endl;
 }

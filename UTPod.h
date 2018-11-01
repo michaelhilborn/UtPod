@@ -2,7 +2,8 @@
 
 #ifndef UTPOD_H
 #define UTPOD_H
-#include "Song.h"
+#include "Song.hpp"
+#include <ctime>
 
 //UtPod class declaration
 class UtPod
@@ -21,6 +22,16 @@ private:
     int memSize;
 
     int getUsedMemory(); //done
+
+    /* FUNCTION - int numberOfSongs
+     *  returns the number of Songs currently on the UTPod
+
+     input parms - none
+
+     output parms - number of songs on UTPod
+     */
+
+    int numberOfSongs(); //done
 
     void swapSongs(int num_node1, int num_node2); //done
 
@@ -141,16 +152,6 @@ public:
      */
 
     int getRemainingMemory(); //done
-
-    /* FUNCTION - int numberOfSongs
-     *  returns the number of Songs currently on the UTPod
-
-     input parms - none
-
-     output parms - number of songs on UTPod
-     */
-
-    int numberOfSongs(); //done
 
 
     ~UtPod();

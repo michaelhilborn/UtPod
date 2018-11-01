@@ -6,20 +6,28 @@
 //  Copyright © 2018 Michael Hilborn. All rights reserved.
 //
 
-#include "UTPod.h"
-#include <ctime>
+#include "UTPod.hpp"
 #include <iostream>
 #include <cstdlib>
 using namespace std;
 
 UtPod::UtPod(){
     songs = NULL;
-    memSize = 512;
+    memSize = MAX_MEMORY;
+    unsigned int currentTime = (unsigned)time(0);
+    srand(currentTime);
 }
 
 UtPod::UtPod(int size){
     songs = NULL;
-    memSize = size;
+    if(size > MAX_MEMORY || size <= 0){
+        memSize = MAX_MEMORY;
+    }
+    else{
+        memSize = size;
+    }
+    unsigned int currentTime = (unsigned)time(0);
+    srand(currentTime);
 }
 
 int UtPod::addSong(const Song &s){
@@ -63,22 +71,24 @@ int UtPod::removeSong(const Song &song){
     int errorCode = NOT_FOUND;
     SongNode *temp = songs;
     SongNode *trail = songs;
-    if(temp->s == song){
-        test = 0;
-        temp = trail->next;
-        songs = temp;
-        delete trail;
-    }
-    else{
-        temp = trail->next;
-        while(temp != NULL){
-            if(temp->s == song){
-                test = 0;
-                trail->next = temp->next;
-                delete temp;
+    if(temp != NULL){
+        if(temp->s == song){
+            test = 0;
+            temp = trail->next;
+            songs = temp;
+            delete trail;
+        }
+        else{
+            temp = trail->next;
+            while(temp != NULL){
+                if(temp->s == song){
+                    test = 0;
+                    trail->next = temp->next;
+                    delete temp;
+                }
+                trail = trail->next;
+                temp = temp->next;
             }
-            trail = trail->next;
-            temp = temp->next;
         }
     }
     if(test == 0){
@@ -103,8 +113,6 @@ int UtPod::numberOfSongs(){
 void UtPod::shuffle(){
     int num_songs = UtPod::numberOfSongs();
     int num_loops = num_songs*3;
-    unsigned int currentTime = (unsigned)time(0);
-    srand(currentTime);
     for(int i = 0; i<num_loops; i++){
 
         //get random number mod it with num_songs
@@ -181,9 +189,33 @@ void UtPod::swapSongs(int num_node1, int num_node2){
 }
 
 void UtPod::clearMemory(){
+    int numSongs = numberOfSongs();
+    SongNode *temp = songs;
+    SongNode *trail = songs;
+    SongNode *trailtrail = songs;
 
+    for(int i = 0; i<numSongs; i++){
+
+        temp = temp->next;
+
+        if(temp != NULL){
+            temp = temp->next;
+            trail = trail->next;
+        }
+
+        while(temp != NULL){
+            temp = temp->next;
+            trail = trail->next;
+            trailtrail = trailtrail->next;
+        }
+        trailtrail->next = temp;
+        delete trail;
+        trail = songs;
+        temp = songs;
+        trailtrail = songs;
+    }
 }
 
 UtPod::~UtPod(){
-
+    clearMemory();
 }

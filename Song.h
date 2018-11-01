@@ -6,8 +6,8 @@
 //  Copyright © 2018 Michael Hilborn. All rights reserved.
 //
 
-#ifndef Song_h
-#define Song_h
+#ifndef Song_hpp
+#define Song_hpp
 
 #include <stdio.h>
 #include <string>
