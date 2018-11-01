@@ -6,7 +6,7 @@
 //  Copyright © 2018 Michael Hilborn. All rights reserved.
 //
 
-#include "UTPod.hpp"
+#include "UTPod.h"
 #include <iostream>
 #include <cstdlib>
 using namespace std;
@@ -63,6 +63,7 @@ int UtPod::getUsedMemory(){
         used_mem = used_mem + temp_song->getSize();
         temp_songnode = temp_songnode->next;
     }
+    delete temp_song;
     return used_mem;
 }
 
@@ -185,6 +186,7 @@ void UtPod::swapSongs(int num_node1, int num_node2){
     *temp_song = temp->s;
     temp->s = temp2->s;
     temp2->s = *temp_song;
+    delete temp_song;
 
 }
 

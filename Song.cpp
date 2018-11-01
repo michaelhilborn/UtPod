@@ -6,7 +6,7 @@
 //  Copyright © 2018 Michael Hilborn. All rights reserved.
 //
 
-#include "Song.hpp"
+#include "Song.h"
 using namespace std;
 
 Song::Song(){

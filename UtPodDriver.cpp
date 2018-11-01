@@ -9,8 +9,8 @@
  */
 #include <cstdlib>
 #include <iostream>
-#include "Song.hpp"
-#include "UTPod.hpp"
+#include "Song.h"
+#include "UTPod.h"
 
 using namespace std;
 
