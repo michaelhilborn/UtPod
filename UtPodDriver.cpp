@@ -306,11 +306,41 @@ int main(int argc, char *argv[])
         cout<<"Test 20: Remove Song from empty list test passed"<<endl;
         cout<< "Score:"<<correct<<"/"<<total<<endl<<endl;
     }
-    //empty shuffle test
-    test.shuffle();
 
-    //empty list show test
+    test.addSong(stay);
+    test.addSong(betternow);
+    test.addSong(sober);
+    test.addSong(nointerruption);
+    test.addSong(iloveit);
+    test.sortSongList();
+
+    test.removeSong(stay);
+    test.removeSong(betternow);
+    test.removeSong(sober);
+    test.removeSong(nointerruption);
+
+    test.sortSongList();
+    cout<<"Test for UtPod only having 1 Song"<<endl;
     test.showSongList();
+    cout<<endl<<endl;
+
+    cout<<"Test for Shuffling a UtPod with only 1 Song"<<endl;
+    test.shuffle();
+    test.showSongList();
+    cout<<endl<<endl;
+
+    test.removeSong(iloveit);
+
+    test.sortSongList();
+    cout<<"Test Sorting for Empty Song List"<<endl;
+    test.showSongList();
+    cout<<endl;
+
+    test.shuffle();
+    cout<<"Test Shuffling for Empty Song List"<<endl;
+    test.showSongList();
+
+
     cout<<endl;
 
     double finalscore = (correct/total) * 100;

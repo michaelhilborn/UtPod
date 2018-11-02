@@ -72,6 +72,7 @@ int UtPod::removeSong(const Song &song){
     int errorCode = NOT_FOUND;
     SongNode *temp = songs;
     SongNode *trail = songs;
+    SongNode *found;
     if(temp != NULL){
         if(temp->s == song){
             test = 0;
@@ -88,7 +89,12 @@ int UtPod::removeSong(const Song &song){
                     delete temp;
                 }
                 trail = trail->next;
-                temp = temp->next;
+                if(trail != NULL){
+                  temp = trail->next;
+                }
+                else{
+                  temp = NULL;
+                }
             }
         }
     }
