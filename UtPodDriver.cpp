@@ -9,8 +9,8 @@
  */
 #include <cstdlib>
 #include <iostream>
-#include "Song.h"
-#include "UTPod.h"
+#include "song.h"
+#include "UtPod.h"
 
 using namespace std;
 
@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
 
     //Test 5: Remove Song Test 1:
     errorcode = t.removeSong(stay);
-    if(errorcode == t.NOT_FOUND){
+    if(errorcode == -2){
         correct ++;
         cout<<"Test 5: Remove Song Test 1 passed"<<endl;
         cout<< "Score:"<<correct<<"/"<<total<<endl<<endl;
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
 
     //Test 6: Remove Song Test 2:
     errorcode = t.removeSong(betternow);
-    if(errorcode == t.SUCCESS){
+    if(errorcode == 0){
         correct ++;
         cout<<"Test 6: Remove Song Test 2 passed"<<endl;
         cout<< "Score:"<<correct<<"/"<<total<<endl<<endl;
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
     t.addSong(dumbforyou);
     errorcode = t.addSong(twentyonetwelve);
 
-    if(errorcode == t.NO_MEMORY){
+    if(errorcode == -1){
         correct++;
         cout<<"Test 7 Add Song Test No Memory Passed"<<endl;
         cout<< "Score:"<<correct<<"/"<<total<<endl<<endl;
@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
 
     //Test 8: Test if you successfully add a song
     errorcode = t.addSong(sober);
-    if(errorcode == t.SUCCESS){
+    if(errorcode == 0){
         correct ++;
         cout << "Test 8 Successfully add a song Test Passed"<<endl;
         cout << "Score: "<<correct<<"/"<<total<<endl<<endl;
@@ -301,7 +301,7 @@ int main(int argc, char *argv[])
     //Test 20 removing a song from an empty list
     //Test 5: Remove Song Test 1:
     errorcode = test.removeSong(stay);
-    if(errorcode == t.NOT_FOUND){
+    if(errorcode == -2){
         correct ++;
         cout<<"Test 20: Remove Song from empty list test passed"<<endl;
         cout<< "Score:"<<correct<<"/"<<total<<endl<<endl;

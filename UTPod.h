@@ -2,7 +2,7 @@
 
 #ifndef UTPOD_H
 #define UTPOD_H
-#include "Song.h"
+#include "song.h"
 #include <ctime>
 
 //UtPod class declaration
@@ -10,6 +10,9 @@ class UtPod
 {
 private:
     static const int MAX_MEMORY = 512;
+    static const int SUCCESS = 0;
+    static const int NO_MEMORY = -1;
+    static const int NOT_FOUND = -2;
 
     struct SongNode
     {
@@ -20,6 +23,14 @@ private:
     SongNode *songs;  //the head pointer
 
     int memSize;
+
+    /* FUNCTION - int getUsedMemory
+     *  returns the amount of memory currently being used on the UTPod
+
+     input parms - none
+
+     output parms - the amount of memory that is used
+     */
 
     int getUsedMemory(); //done
 
@@ -33,12 +44,17 @@ private:
 
     int numberOfSongs(); //done
 
+    /* FUNCTION - void swapSongs
+     *  takes the two integers that are input to this function and swaps the songs at that index on the UtPod
+
+     input parms - The index of the two songs that need to be swapped
+
+     output parms - nothing
+     */
+
     void swapSongs(int num_node1, int num_node2); //done
 
 public:
-    static const int SUCCESS = 0;
-    static const int NO_MEMORY = -1;
-    static const int NOT_FOUND = -2;
     //Default constructor
     //set the memory size to MAX_MEMORY
 
